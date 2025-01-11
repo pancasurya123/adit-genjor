@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Warna dan Cahaya Banyak</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1a1a1a;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        button {
+            padding: 20px 40px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            font-weight: bold;
+            transition: 0.3s;
+            position: absolute;
+            z-index: 10;
+        }
+
+        button:hover {
+            background-color: #d32f2f;
+        }
+
+        .text {
+            position: absolute;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            animation: colorChange 3s infinite, textGlow 1s infinite alternate;
+        }
+
+        @keyframes colorChange {
+            0% { color: #ff5733; }
+            25% { color: #33ff57; }
+            50% { color: #3357ff; }
+            75% { color: #f4e142; }
+            100% { color: #ff33a1; }
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 10px #ff5733, 0 0 20px #ff5733, 0 0 30px #ff5733, 0 0 40px #ff5733; }
+            50% { text-shadow: 0 0 10px #33ff57, 0 0 20px #33ff57, 0 0 30px #33ff57, 0 0 40px #33ff57; }
+            100% { text-shadow: 0 0 10px #3357ff, 0 0 20px #3357ff, 0 0 30px #3357ff, 0 0 40px #3357ff; }
+        }
+    </style>
+</head>
+<body>
+    <button id="showTextBtn">Klik untuk Menampilkan Teks!</button>
+
+    <script>
+        const button = document.getElementById('showTextBtn');
+
+        button.addEventListener('click', function() {
+            // Membuat banyak elemen teks
+            for (let i = 0; i < 50; i++) {  // Menambahkan 50 elemen teks
+                const text = document.createElement('div');
+                text.classList.add('text');
+                text.textContent = "Adit Genjor";
+
+                // Menentukan posisi acak di layar
+                const randomX = Math.random() * window.innerWidth;
+                const randomY = Math.random() * window.innerHeight;
+                text.style.left = `${randomX}px`;
+                text.style.top = `${randomY}px`;
+
+                // Menambahkan teks ke halaman
+                document.body.appendChild(text);
+            }
+        });
+    </script>
+</body>
+</html>
